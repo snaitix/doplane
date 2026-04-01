@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Family — DoPlane</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f5f5f7; color: #1d1d1f; }
+        .card { text-align: center; background: #fff; border-radius: 20px; padding: 40px 32px; max-width: 380px; margin: 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .icon { font-size: 48px; margin-bottom: 16px; }
+        h1 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+        p { font-size: 15px; color: #86868b; margin-bottom: 24px; line-height: 1.5; }
+        .btn { display: inline-block; background: #007aff; color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 12px; font-size: 17px; font-weight: 500; }
+        .btn:hover { background: #0056cc; }
+        .store { margin-top: 16px; font-size: 13px; color: #86868b; }
+        .store a { color: #007aff; text-decoration: none; }
+    </style>
+    <script>
+        function openApp() {
+            var params = new URLSearchParams(window.location.search);
+            var id = params.get('id') || '';
+            var token = params.get('token') || '';
+            var name = params.get('name') || 'Family';
+            var deepLink = 'doplane://family/join/' + id + '/' + token + '/' + encodeURIComponent(name);
+            window.location.href = deepLink;
+            setTimeout(function() {
+                // If app didn't open, show the page
+                document.getElementById('fallback').style.display = 'block';
+            }, 2000);
+        }
+        window.onload = openApp;
+    </script>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">👨‍👩‍👧‍👦</div>
+        <h1>Join Family in DoPlane</h1>
+        <p>You've been invited to join a family group. Open the link in DoPlane to accept.</p>
+        <a class="btn" href="#" onclick="openApp(); return false;">Open in DoPlane</a>
+        <div id="fallback" style="display:none;">
+            <p class="store" style="margin-top: 24px;">Don't have DoPlane? <a href="https://apps.apple.com/app/id6746498771">Download from App Store</a></p>
+        </div>
+    </div>
+</body>
+</html>
